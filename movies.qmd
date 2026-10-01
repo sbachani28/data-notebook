@@ -1,0 +1,41 @@
+---
+title: "Movie Budgets"
+author: "Sanskar Bachani"
+date: "2026-09-30"
+format: html
+---
+
+Do films with bigger budgets earn more at the box office? I used [TidyTuesday data from October 23, 2018](https://github.com/rfordatascience/tidytuesday/blob/main/data/2018/2018-10-23/readme.md) to look at film budgets and ticket sales. The data come from The Numbers.
+
+I removed one repeated row and kept films with box office totals above zero. This leaves 3,364 films from 1936 to 2018. The dollar amounts do not account for inflation.
+
+```{r}
+library(tidyverse)
+
+movies <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2018/2018-10-23/movie_profit.csv')
+
+movies <- select(movies, movie, release_date, production_budget, worldwide_gross)
+movies <- distinct(movies)
+movies <- filter(movies, worldwide_gross > 0)
+```
+
+Each point shows one film. Both axes use millions of US dollars. Box office revenue is ticket sales, before costs.
+
+```{r}
+ggplot(movies, aes(x = production_budget / 1000000,
+                  y = worldwide_gross / 1000000)) +
+  geom_point(color = "steelblue", alpha = 0.4) +
+  labs(
+    title = "Movie budgets and box office revenue",
+    x = "Production budget (US$ millions)",
+    y = "Worldwide box office (US$ millions)"
+  )
+```
+
+Films with bigger budgets tend to bring in more at the box office, but the points spread out. Films with close budgets can have very different ticket sales. Minions, for example, had a budget of $74 million and brought in about $1.16 billion worldwide.
+
+## Sources
+
+- [TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/main/data/2018/2018-10-23/readme.md)
+- [CSV data](https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2018/2018-10-23/movie_profit.csv)
+- [Original data from The Numbers](https://www.the-numbers.com/)

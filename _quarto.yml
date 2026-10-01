@@ -1,0 +1,27 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Sanskar Bachani"
+  navbar:
+    right:
+      - text: "Home / About"
+        href: index.qmd
+      - text: "Data Viz"
+        menu:
+          - text: "Olympic Basketball"
+            href: basketball.qmd
+          - text: "Movie Budgets"
+            href: movies.qmd
+
+format:
+  html:
+    theme: minty
+    css: styles.css
+    toc: false
+    page-layout: full
+
+execute:
+  message: false
+  warning: false

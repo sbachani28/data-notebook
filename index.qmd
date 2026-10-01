@@ -1,0 +1,31 @@
+---
+title: "Sanskar Bachani"
+image: images/sanskar.jpg
+toc: false
+about:
+  template: jolla
+  image-shape: rectangle
+  image-width: 25em
+  links:
+    - text: GitHub repository
+      href: https://github.com/sbachani28/portfolio
+      target: _blank
+---
+
+## About me
+
+Hi, I'm Sanskar Bachani. I'm a junior at Claremont McKenna College. I like working with data. I made this site for my Foundations of Data Science in R class.
+
+This site has two plots made with TidyTuesday data. You can find the [code for this site on GitHub](https://github.com/sbachani28/portfolio).
+
+## Data Viz
+
+### [Olympic Basketball](basketball.qmd)
+
+How did player ages differ across men's basketball teams in 2016?
+
+### [Movie Budgets](movies.qmd)
+
+Do films with bigger budgets earn more at the box office?
+
+Each page includes the R code for its plot.

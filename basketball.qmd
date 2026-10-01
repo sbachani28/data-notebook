@@ -1,0 +1,41 @@
+---
+title: "Olympic Basketball"
+author: "Sanskar Bachani"
+date: "2026-09-30"
+format: html
+---
+
+How did player ages differ across men's basketball teams at the 2016 Olympics? I used [TidyTuesday data from August 6, 2024](https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-08-06/readme.md) to compare the teams.
+
+The full data cover the Olympics from 1896 to 2016. RGriffin put the Sports Reference records on Kaggle. I kept the men's basketball event in 2016. This gives 141 players from 12 teams. Each player has one row and an age.
+
+```{r}
+library(tidyverse)
+
+olympics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2024/2024-08-06/olympics.csv')
+
+basketball <- filter(olympics, sport == "Basketball", year == 2016, sex == "M")
+```
+
+Each box shows the middle half of a team's ages. The line in the box marks the median.
+
+```{r}
+ggplot(basketball, aes(x = age, y = team)) +
+  geom_boxplot(fill = "darkorange") +
+  labs(
+    title = "Player ages by team",
+    x = "Age (years)",
+    y = "Team"
+  )
+```
+
+China has the lowest median age at 22.5 years. Brazil has the highest at 31. The United States falls between them at 26. Argentina has a wide age range, from 21 to 39.
+
+The records list 10 players for Croatia and 11 for Nigeria. Each other team has 12. These comparisons use the players in the data.
+
+## Sources
+
+- [TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-08-06/readme.md)
+- [CSV data](https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2024/2024-08-06/olympics.csv)
+- [Original data on Kaggle](https://www.kaggle.com/datasets/heesoo37/120-years-of-olympic-history-athletes-and-results)
+- [Sports Reference](https://www.sports-reference.com/olympics/)

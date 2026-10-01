@@ -1,0 +1,51 @@
+[
+  {
+    "objectID": "basketball.html",
+    "href": "basketball.html",
+    "title": "Olympic Basketball",
+    "section": "",
+    "text": "How did player ages differ across men’s basketball teams at the 2016 Olympics? I used TidyTuesday data from August 6, 2024 to compare the teams.\nThe full data cover the Olympics from 1896 to 2016. RGriffin put the Sports Reference records on Kaggle. I kept the men’s basketball event in 2016. This gives 141 players from 12 teams. Each player has one row and an age.\nlibrary(tidyverse)\n\nolympics &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2024/2024-08-06/olympics.csv')\n\nbasketball &lt;- filter(olympics, sport == \"Basketball\", year == 2016, sex == \"M\")\nEach box shows the middle half of a team’s ages. The line in the box marks the median.\nggplot(basketball, aes(x = age, y = team)) +\n  geom_boxplot(fill = \"darkorange\") +\n  labs(\n    title = \"Player ages by team\",\n    x = \"Age (years)\",\n    y = \"Team\"\n  )\nChina has the lowest median age at 22.5 years. Brazil has the highest at 31. The United States falls between them at 26. Argentina has a wide age range, from 21 to 39.\nThe records list 10 players for Croatia and 11 for Nigeria. Each other team has 12. These comparisons use the players in the data."
+  },
+  {
+    "objectID": "basketball.html#sources",
+    "href": "basketball.html#sources",
+    "title": "Olympic Basketball",
+    "section": "Sources",
+    "text": "Sources\n\nTidyTuesday\nCSV data\nOriginal data on Kaggle\nSports Reference"
+  },
+  {
+    "objectID": "movies.html",
+    "href": "movies.html",
+    "title": "Movie Budgets",
+    "section": "",
+    "text": "Do films with bigger budgets earn more at the box office? I used TidyTuesday data from October 23, 2018 to look at film budgets and ticket sales. The data come from The Numbers.\nI removed one repeated row and kept films with box office totals above zero. This leaves 3,364 films from 1936 to 2018. The dollar amounts do not account for inflation.\nlibrary(tidyverse)\n\nmovies &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2018/2018-10-23/movie_profit.csv')\n\nmovies &lt;- select(movies, movie, release_date, production_budget, worldwide_gross)\nmovies &lt;- distinct(movies)\nmovies &lt;- filter(movies, worldwide_gross &gt; 0)\nEach point shows one film. Both axes use millions of US dollars. Box office revenue is ticket sales, before costs.\nggplot(movies, aes(x = production_budget / 1000000,\n                  y = worldwide_gross / 1000000)) +\n  geom_point(color = \"steelblue\", alpha = 0.4) +\n  labs(\n    title = \"Movie budgets and box office revenue\",\n    x = \"Production budget (US$ millions)\",\n    y = \"Worldwide box office (US$ millions)\"\n  )\nFilms with bigger budgets tend to bring in more at the box office, but the points spread out. Films with close budgets can have very different ticket sales. Minions, for example, had a budget of $74 million and brought in about $1.16 billion worldwide."
+  },
+  {
+    "objectID": "movies.html#sources",
+    "href": "movies.html#sources",
+    "title": "Movie Budgets",
+    "section": "Sources",
+    "text": "Sources\n\nTidyTuesday\nCSV data\nOriginal data from The Numbers"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Sanskar Bachani",
+    "section": "",
+    "text": "Hi, I’m Sanskar Bachani. I’m a junior at Claremont McKenna College. I like working with data. I made this site for my Foundations of Data Science in R class.\nThis site has two plots made with TidyTuesday data. You can find the code for this site on GitHub."
+  },
+  {
+    "objectID": "index.html#about-me",
+    "href": "index.html#about-me",
+    "title": "Sanskar Bachani",
+    "section": "",
+    "text": "Hi, I’m Sanskar Bachani. I’m a junior at Claremont McKenna College. I like working with data. I made this site for my Foundations of Data Science in R class.\nThis site has two plots made with TidyTuesday data. You can find the code for this site on GitHub."
+  },
+  {
+    "objectID": "index.html#data-viz",
+    "href": "index.html#data-viz",
+    "title": "Sanskar Bachani",
+    "section": "Data Viz",
+    "text": "Data Viz\n\nOlympic Basketball\nHow did player ages differ across men’s basketball teams in 2016?\n\n\nMovie Budgets\nDo films with bigger budgets earn more at the box office?\nEach page includes the R code for its plot."
+  }
+]
