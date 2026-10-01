@@ -19,7 +19,7 @@ movies <- distinct(movies)
 movies <- filter(movies, worldwide_gross > 0)
 ```
 
-Each point shows one film. Both axes use millions of US dollars. Box office revenue is ticket sales, before costs.
+Each point shows one film. Both axes use millions of US dollars.
 
 ```{r}
 ggplot(movies, aes(x = production_budget / 1000000,
